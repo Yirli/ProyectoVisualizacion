@@ -24,7 +24,7 @@ layout = html.Div(
             [
                 dbc.Col(
                     [
-                          dcc.Dropdown(
+                        dcc.Dropdown(
                             options=[
                                 {
                                     "label": x,
@@ -65,7 +65,7 @@ layout = html.Div(
 
 
 @callback(
-    Output("inflation-map", "figure"),
+    # Output("inflation-map", "figure"),
     Output("inflation-tree", "figure"),
     Input("year-filter", "value")
 )
@@ -74,36 +74,57 @@ def update_graph(year):
     
     #Inflation Map
 
-    df_inflation = inflation_data.copy()
-    df_inflation = df_inflation[df_inflation["year"] == year]
+    # df_inflation = inflation_data.copy()
+    # df_inflation = df_inflation[df_inflation["year"] == year]
 
 
-    inflation_map = go.Figure(data=go.Choropleth(
-        locations = df_inflation['iso3c'],
-        z = df_inflation['Inflation'],
-        text = df_inflation['country'],
-        colorscale = 'Reds',
-        autocolorscale=False,
-        reversescale=False,
-        marker_line_color='darkgray',
-        marker_line_width=0.5,
-        colorbar_tickprefix = '%',
-        colorbar_title = 'Inflation Rate',
-    ))
+    # inflation_map = go.Figure(data=go.Choropleth(
+    #     locations = df_inflation['iso3c'],
+    #     z = df_inflation['Inflation'],
+    #     text = df_inflation['country'],
+    #     colorscale = 'Reds',
+    #     autocolorscale=False,
+    #     reversescale=False,
+    #     marker_line_color='darkgray',
+    #     marker_line_width=0.5,
+    #     colorbar_tickprefix = '%',
+    #     colorbar_title = 'Inflation Rate',
+    # ))
+
+    # inflation_map.update_layout(
+    #     # title_text='World GDP during per year during the period of 2000 - 2021',
+
+    #     geo=dict(
+    #         showframe=False,
+    #         showcoastlines=False,
+    #         projection_type='equirectangular',
+    #     ),
+    #     # annotations = [dict(
+    #     #     x=0.55,
+    #     #     y=0.1,
+    #     #     xref='paper',
+    #     #     yref='paper',
+    #     #     text='Source: <a href="https://www.cia.gov/library/publications/the-world-factbook/fields/2195.html">\
+    #     #         CIA World Factbook</a>',
+    #     #     showarrow = False
+    #     # )]
+    # )
 
     #Inflation TreeMap
 
-    dff_inflation = df_inflation.copy()
+    dff_inflation = inflation_data.copy()
+    dff_inflation = dff_inflation[dff_inflation["year"] == year]
     dff_inflation = dff_inflation[dff_inflation["Inflation"] != 0]
-    
 
-    inflation_tree = px.treemap(dff_inflation, path=[px.Constant("world"),dff_inflation['adminregion'], dff_inflation['country']], values='Inflation',
+    print(dff_inflation)
+
+    inflation_tree = px.treemap(dff_inflation, path=[px.Constant("World"),dff_inflation['adminregion'], dff_inflation['country']], values='Inflation',
                   color=dff_inflation['Inflation'], 
                   hover_data=[dff_inflation['country'], dff_inflation['Inflation']],
                   color_continuous_scale='Reds',
                   )
 
-    print(dff_inflation)
 
 
-    return inflation_map, inflation_tree
+#inflation_map,
+    return  inflation_tree

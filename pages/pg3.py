@@ -58,28 +58,3 @@ layout = html.Div(
 
 
 
-# @callback(
-#     Output("gdp-crtrading-line", "figure"),
-#     Output("inflation-crtrading-line", "figure"),
-#     # Input("year-filter", "value")
-# )
-
-# def update_graph(year):
-    
-    #GDP Tradin Partners
-
-data_trading_filter = data.copy()
-data_trading_filter = data_trading_filter[(data_trading_filter["country_name"] == "Belgium") | (data_trading_filter["country_name"] == "Costa Rica") | (data_trading_filter["country_name"] == "United States of America") | (data_trading_filter["country_name"] == "Netherlands")]
-crtrading_lin_fig = px.line(data_trading_filter, x='year', y='total_gdp_million', color='country_name')
-
-
-
-
-    #Inflation Tradin Partners
-
-data_inflation_trading_filter = inflation_data.copy()
-data_inflation_trading_filter = data_inflation_trading_filter[(data_inflation_trading_filter["country"] == "Belgium") | (data_inflation_trading_filter["country"] == "Costa Rica") | (data_inflation_trading_filter["country"] == "United States") | (data_inflation_trading_filter["country"] == "Netherlands")]
-inflation_crtrading_lin_fig = px.line(data_inflation_trading_filter, x='year', y='Inflation', color='country')
-
-
-    # return crtrading_lin_fig, inflation_crtrading_lin_fig
