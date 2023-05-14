@@ -71,7 +71,7 @@ layout = html.Div(
 data_trading_filter = data.copy()
 data_trading_filter = data_trading_filter[(data_trading_filter["country_name"] == "Belgium") | (data_trading_filter["country_name"] == "Costa Rica") | (data_trading_filter["country_name"] == "United States of America") | (data_trading_filter["country_name"] == "Netherlands")]
 crtrading_lin_fig = px.line(data_trading_filter, x='year', y='total_gdp_million', color='country_name')
-print(data_trading_filter)
+
 
 
 

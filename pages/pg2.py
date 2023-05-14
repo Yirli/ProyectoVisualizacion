@@ -103,7 +103,7 @@ def update_graph(year):
                   color_continuous_scale='Reds',
                   )
 
-    print( inflation_tree )
+    print(dff_inflation)
 
 
     return inflation_map, inflation_tree
