@@ -247,10 +247,10 @@ sidebar = dbc.Nav(
 )
 
 app.layout = dbc.Container([
-    dbc.Row([
-        dbc.Col(html.Div("Análisis del GDP e Inflación en el mundo en el período de 2000-2021",
-                         style={'fontSize':50, 'textAlign':'center'}))
-    ]),
+    # dbc.Row([
+    #     dbc.Col(html.Div("Análisis del GDP e Inflación en el mundo en el período de 2000-2021",
+    #                      style={'fontSize':50, 'textAlign':'center'}))
+    # ]),
 
     html.Hr(),
 

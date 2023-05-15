@@ -35,7 +35,7 @@ layout = html.Div(
         dcc.Tabs([
 
             dcc.Tab(label="Map", children = [
-                html.H3('World GDP during per year during the period of 2000 - 2021', style={'textAlign':'center', 'margin-top':'40px'}),
+                html.H2('World GDP per year during the period of 2000 - 2021', style={'textAlign':'center', 'margin-top':'40px'}),
                 dbc.Row([
                     dbc.Col(
                         [
@@ -59,7 +59,6 @@ layout = html.Div(
                     )
                 ]),
                 
-                # dcc.Graph(id='gdp_map', figure={}),
                     dbc.Row([
                         dbc.Col(
                             [
@@ -71,6 +70,31 @@ layout = html.Div(
                                 dcc.Graph(id="gdp-tree"),
                             ], width=6
                         )
+                    ]),
+                    dbc.Row([
+                        html.H3('Top 3 Countries with Highest GDP', style={'textAlign':'center','margin-bottom':'40px', 'margin-top':'40px'}),
+                            dbc.Col(
+                                [
+                                    html.Img(src='assets/usa-flag.png', style={'margin-top':'40px', 'margin-bottom':'40px', 'width': '150px'}),
+                                    html.P("United States"), 
+                                    html.P("$20M") 
+                                ], width= 4
+                            ),
+                            dbc.Col(
+                                [
+                                    html.Img(src='assets/japan-flag.png', style={'margin-top':'40px', 'margin-bottom':'40px',  'width': '150px'}), 
+                                    html.P("Japan"),
+                                    html.P("$5M") 
+                                ], width= 4
+                            ),
+                            dbc.Col(
+                                [
+                                    html.Img(src='assets/china-flag.png', style={'margin-top':'40px', 'width': '150px'}), 
+                                    html.P("China"),
+                                    html.P("$2M") 
+                                ], width= 4
+                            ),
+
                     ])
                 ]),
 
@@ -167,21 +191,31 @@ def update_graph(year, country):
                   )
     
     x = dff['country_name']
-    # treemap_fig.update_traces(hovertemplate='GDP: %{total_gdp_million_sum} <br>Country: %{labels}') 
-    # print(treemap_fig.data[0].hovertemplate)
 
     #Country GDP 
     country_gdp = data.copy()
     country_gdp = country_gdp[country_gdp["country_name"] == country]
 
-    country_gdp_fig = px.line(country_gdp, x='year', y='total_gdp_million')
+    country_gdp_fig = px.line(country_gdp, x='year', y='total_gdp_million',title="GDP during the period of 2000-2021")
+    country_gdp_fig.update_layout(
+        xaxis_title = "Year",
+        yaxis_title="GDP (Millions of $)",
+    )
+
+    country_gdp_fig.update_traces(line_color='blue')
 
 
     #Country Inflation 
     country_inflation = inflation_data.copy()
     country_inflation = country_inflation[country_inflation["country"] == country]
 
-    country_inflation_fig = px.line(country_inflation, x='year', y='Inflation')
+    country_inflation_fig = px.line(country_inflation, x='year', y='Inflation',  title="Inflation during the period of 2000-2021",
+    )
+    country_inflation_fig.update_traces(line_color='red')
+    country_inflation_fig.update_layout(
+        xaxis_title = "Year",
+        yaxis_title="Inflation (%)",
+    )
 
 
     return fig, treemap_fig,country_gdp_fig, country_inflation_fig

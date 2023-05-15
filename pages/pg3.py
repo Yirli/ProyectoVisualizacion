@@ -23,14 +23,22 @@ dash.register_page(__name__,
 
 data_trading_filter = data.copy()
 data_trading_filter = data_trading_filter[(data_trading_filter["country_name"] == "Belgium") | (data_trading_filter["country_name"] == "Costa Rica") | (data_trading_filter["country_name"] == "United States of America") | (data_trading_filter["country_name"] == "Netherlands")]
-crtrading_lin_fig = px.line(data_trading_filter, x='year', y='total_gdp_million', color='country_name')
+crtrading_lin_fig = px.line(data_trading_filter, x='year', y='total_gdp_million', color='country_name', title="GDP of Costa Rica vs its Main trading Partners during 2000-2021")
+crtrading_lin_fig.update_layout(
+    xaxis_title = "Year",
+    yaxis_title="GDP (Millions of $)",
+)
 
 
     #Inflation Tradin Partners
 
 data_inflation_trading_filter = inflation_data.copy()
 data_inflation_trading_filter = data_inflation_trading_filter[(data_inflation_trading_filter["country"] == "Belgium") | (data_inflation_trading_filter["country"] == "Costa Rica") | (data_inflation_trading_filter["country"] == "United States") | (data_inflation_trading_filter["country"] == "Netherlands")]
-inflation_crtrading_lin_fig = px.line(data_inflation_trading_filter, x='year', y='Inflation', color='country')
+inflation_crtrading_lin_fig = px.line(data_inflation_trading_filter, x='year', y='Inflation', color='country', title="Inflation of Costa Rica vs its Main trading Partners during 2000-2021")
+inflation_crtrading_lin_fig.update_layout(
+    xaxis_title = "Year",
+    yaxis_title="Inflation (%)",
+)
 
 layout = html.Div(
     [
