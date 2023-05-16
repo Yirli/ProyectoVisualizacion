@@ -34,7 +34,7 @@ layout = html.Div(
     [
         dcc.Tabs([
 
-            dcc.Tab(label="Map", children = [
+            dcc.Tab(label="Data Worldwide", children = [
                 html.H2('World GDP per year during the period of 2000 - 2021', style={'textAlign':'center', 'margin-top':'40px'}),
                 dbc.Row([
                     dbc.Col(
@@ -75,23 +75,23 @@ layout = html.Div(
                         html.H3('Top 3 Countries with Highest GDP', style={'textAlign':'center','margin-bottom':'40px', 'margin-top':'40px'}),
                             dbc.Col(
                                 [
-                                    html.Img(src='assets/usa-flag.png', style={'margin-top':'40px', 'margin-bottom':'40px', 'width': '150px'}),
+                                    html.Img(src='assets/usa-flag.png', style={'margin-top':'40px', 'margin-bottom':'30px', "margin-left": "auto", "margin-right": "auto", "width": "50%"}),
                                     html.P("United States"), 
-                                    html.P("$20M") 
+                                    html.P("$10.25M") 
                                 ], width= 4
                             ),
                             dbc.Col(
                                 [
-                                    html.Img(src='assets/japan-flag.png', style={'margin-top':'40px', 'margin-bottom':'40px',  'width': '150px'}), 
+                                    html.Img(src='assets/japan-flag.png', style={'margin-top':'40px', 'margin-bottom':'30px', "margin-left": "auto", "margin-right": "auto", "width": "50%"}), 
                                     html.P("Japan"),
-                                    html.P("$5M") 
+                                    html.P("$4.97M") 
                                 ], width= 4
                             ),
                             dbc.Col(
                                 [
-                                    html.Img(src='assets/china-flag.png', style={'margin-top':'40px', 'width': '150px'}), 
+                                    html.Img(src='assets/china-flag.png', style={'margin-bottom':'30px','margin-top':'40px', "margin-left": "auto", "margin-right": "auto", "width": "50%"}), 
                                     html.P("China"),
-                                    html.P("$2M") 
+                                    html.P("$1.21M") 
                                 ], width= 4
                             ),
 
@@ -216,6 +216,12 @@ def update_graph(year, country):
         xaxis_title = "Year",
         yaxis_title="Inflation (%)",
     )
+
+    #TOP 3 COUNTRIES
+    # top_countries = data.copy()
+    # top_countries.sort_values([top_countries['total_gdp_million'], top_countries['country_name']], ascending=False).groupby(top_countries['year']).head(3)
+    # print(top_countries)
+
 
 
     return fig, treemap_fig,country_gdp_fig, country_inflation_fig

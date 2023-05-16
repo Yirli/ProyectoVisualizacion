@@ -49,18 +49,48 @@ layout = html.Div(
                     dcc.Graph(
                         id="gdp-crtrading-line", figure=crtrading_lin_fig
                     ),
-                ], width=12
-            )
-        ]),
-        dbc.Row([
+                ], width=6
+            ),
             dbc.Col(
                 [
                     dcc.Graph(
-                        id="inflation-crtrading-line", figure=inflation_crtrading_lin_fig
+                        id="inflation-crtrading-line", figure=crtrading_lin_fig
                     ),
-                ], width=12
-            )
+                ], width=6
+            ),
+        ]),
+        dbc.Row([
+            html.H3('Most Common Export Goods from Costa Rica', style={'textAlign':'center','margin-bottom':'40px', 'margin-top':'40px'}),
+                dbc.Col(
+                    [
+                        html.Img(src='assets/cateter.jpg', style={'margin-top':'40px', 'margin-bottom':'40px', "display": "block", "margin-left": "auto", "margin-right": "auto", "width": "50%"}),
+                        html.P("Medical Products", style={'text-align':'center'})
+                    ], width= 4
+                ),
+                dbc.Col(
+                    [
+                        html.Img(src='assets/coffee.jpg', style={'margin-top':'40px', 'margin-bottom':'40px', "display": "block", "margin-left": "auto", "margin-right": "auto", "width": "50%"}), 
+                        html.P("Coffee", style={'text-align':'center'})
+                    ], width= 4
+                ),
+                dbc.Col(
+                    [
+                        html.Img(src='assets/fruits.jpg', style={'margin-bottom':'40px','margin-top':'40px', "display": "block", "margin-left": "auto", "margin-right": "auto", "width": "50%"}), 
+                        html.P("Fruits", style={'text-align':'center'})
+
+                    ], width= 4
+                ),
+
         ])
+        # dbc.Row([
+        #     dbc.Col(
+        #         [
+        #             dcc.Graph(
+        #                 id="inflation-crtrading-line", figure=inflation_crtrading_lin_fig
+        #             ),
+        #         ], width=12
+        #     )
+        # ])
     ]
 )
 
