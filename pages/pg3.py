@@ -54,7 +54,7 @@ layout = html.Div(
             dbc.Col(
                 [
                     dcc.Graph(
-                        id="inflation-crtrading-line", figure=crtrading_lin_fig
+                        id="inflation-crtrading-line", figure=inflation_crtrading_lin_fig
                     ),
                 ], width=6
             ),
