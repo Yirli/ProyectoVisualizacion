@@ -15,7 +15,7 @@ dash.register_page(__name__,
 # page 2 data
 
 inflation_data = (
-    pd.read_csv("/home/yirlania/Documents/Visualizacion/Proyecto/ProyectoVisualizacion/inflation_rate.csv", delimiter = ",").fillna(value = 0)
+    pd.read_csv("/home/yirlania/Documents/Visualizacion/Proyecto/ProyectoVisualizacion/inflation_rate.csv", delimiter = ";").fillna(value = 0)
 )
 
 layout = html.Div(
@@ -57,15 +57,6 @@ layout = html.Div(
                 ], width=6
             )
         ]),
-        # dbc.Row([
-        #     dbc.Col(
-        #         [
-        #             dcc.Graph(
-        #                 id="inflation-tree",
-        #             ),
-        #         ], width=12
-        #     )
-        # ])
     ]
 )
 
@@ -105,22 +96,16 @@ def update_graph(year):
             showcoastlines=False,
             projection_type='equirectangular',
         ),
-        # annotations = [dict(
-        #     x=0.55,
-        #     y=0.1,
-        #     xref='paper',
-        #     yref='paper',
-        #     text='Source: <a href="https://www.cia.gov/library/publications/the-world-factbook/fields/2195.html">\
-        #         CIA World Factbook</a>',
-        #     showarrow = False
-        # )]
     )
 
     #Inflation TreeMap
 
     dff_inflation = inflation_data.copy()
-    # dff_inflation = dff_inflation[dff_inflation["year"] == year]
-    dff_inflation = dff_inflation[dff_inflation["Inflation"] != 0]
+    dff_inflation = dff_inflation[dff_inflation["year"] == year]
+    dff_inflation = dff_inflation[dff_inflation["Inflation"] > 0]
+    dff_inflation = dff_inflation[dff_inflation["adminregion"] != 0]
+    dff_inflation = dff_inflation[dff_inflation["country"] != 0]
+ 
 
 
     inflation_tree = px.treemap(dff_inflation, path=[px.Constant("World"),dff_inflation['adminregion'], dff_inflation['country']], values='Inflation',
@@ -131,5 +116,5 @@ def update_graph(year):
 
 
 
-#inflation_map,
+
     return  inflation_map,inflation_tree

@@ -20,7 +20,7 @@ data = (
 )
 
 inflation_data = (
-    pd.read_csv("/home/yirlania/Documents/Visualizacion/Proyecto/ProyectoVisualizacion/inflation_rate.csv", delimiter = ",").fillna(value = 0)
+    pd.read_csv("/home/yirlania/Documents/Visualizacion/Proyecto/ProyectoVisualizacion/inflation_rate.csv", delimiter = ";").fillna(value = 0)
 )
 
 countries = data['country_name'].unique()
@@ -170,15 +170,7 @@ def update_graph(year, country):
             showcoastlines=False,
             projection_type='equirectangular',
         ),
-        # annotations = [dict(
-        #     x=0.55,
-        #     y=0.1,
-        #     xref='paper',
-        #     yref='paper',
-        #     text='Source: <a href="https://www.cia.gov/library/publications/the-world-factbook/fields/2195.html">\
-        #         CIA World Factbook</a>',
-        #     showarrow = False
-        # )]
+
     )
 
     dff = df.copy()
@@ -208,6 +200,7 @@ def update_graph(year, country):
     #Country Inflation 
     country_inflation = inflation_data.copy()
     country_inflation = country_inflation[country_inflation["country"] == country]
+    print(country_inflation)
 
     country_inflation_fig = px.line(country_inflation, x='year', y='Inflation',  title="Inflation during the period of 2000-2021",
     )
@@ -216,11 +209,6 @@ def update_graph(year, country):
         xaxis_title = "Year",
         yaxis_title="Inflation (%)",
     )
-
-    #TOP 3 COUNTRIES
-    # top_countries = data.copy()
-    # top_countries.sort_values([top_countries['total_gdp_million'], top_countries['country_name']], ascending=False).groupby(top_countries['year']).head(3)
-    # print(top_countries)
 
 
 

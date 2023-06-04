@@ -5,7 +5,7 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 
 inflation_data = (
-    pd.read_csv("/home/yirlania/Documents/Visualizacion/Proyecto/ProyectoVisualizacion/inflation_rate.csv", delimiter = ",").fillna(value = 0)
+    pd.read_csv("/home/yirlania/Documents/Visualizacion/Proyecto/ProyectoVisualizacion/inflation_rate.csv", delimiter = ";").fillna(value = 0)
 )
 
 data = (
@@ -33,7 +33,7 @@ crtrading_lin_fig.update_layout(
     #Inflation Tradin Partners
 
 data_inflation_trading_filter = inflation_data.copy()
-data_inflation_trading_filter = data_inflation_trading_filter[(data_inflation_trading_filter["country"] == "Belgium") | (data_inflation_trading_filter["country"] == "Costa Rica") | (data_inflation_trading_filter["country"] == "United States") | (data_inflation_trading_filter["country"] == "Netherlands")]
+data_inflation_trading_filter = data_inflation_trading_filter[(data_inflation_trading_filter["country"] == "Belgium") | (data_inflation_trading_filter["country"] == "Costa Rica") | (data_inflation_trading_filter["country"] == "United States of America") | (data_inflation_trading_filter["country"] == "Netherlands")]
 inflation_crtrading_lin_fig = px.line(data_inflation_trading_filter, x='year', y='Inflation', color='country', title="Inflation of Costa Rica vs its Main trading Partners during 2000-2021")
 inflation_crtrading_lin_fig.update_layout(
     xaxis_title = "Year",
